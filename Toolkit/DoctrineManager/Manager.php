@@ -2,16 +2,17 @@
 
 namespace Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager;
 
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Doctrine\ORM\Query;
-use Symfonian\Indonesia\CoreBundle\Toolkit\Util\ArrayUtil\ArrayNormalizer;
+use Doctrine\ORM\QueryBuilder;
+use Knp\Component\Pager\Paginator;
+use Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\Model\EntityInterface;
 use Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\Model\SoftDeletableInterface;
 use Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\Model\TimestampableInterface;
-use Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\Model\EntityInterface;
+use Symfonian\Indonesia\CoreBundle\Toolkit\Util\ArrayUtil\ArrayNormalizer;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 abstract class Manager
 {
@@ -226,6 +227,11 @@ abstract class Manager
         return $this->bindData($object, $data);
     }
 
+    public function paginate(Paginator $paginator, Query $query, $page, $perPage)
+    {
+        return $paginator->paginate($query, $page, $perPage);
+    }
+
     protected function commit($object)
     {
         if (!$this->isSupportedObject($object)) {
@@ -277,7 +283,7 @@ abstract class Manager
         $object = $this->cache->fetch($this->generateCacheKey($id));
 
         if (!$object) {
-            return;
+            return null;
         }
 
         if (is_object($object)) {
