@@ -164,7 +164,7 @@ abstract class Manager
         if (!$result) {
             $queryBuilder = $this->repository->createQueryBuilder('o');
             $queryBuilder->andWhere($queryBuilder->expr()->eq('o.'.$this->identifier, $id));
-            $result = $this->getOneOrNullResult(Query::HYDRATE_ARRAY);
+            $result = $this->getOneOrNullResult($queryBuilder, Query::HYDRATE_ARRAY);
 
             $this->saveCache($cacheId, $result);
         }
@@ -245,7 +245,7 @@ abstract class Manager
             $this->deleteCache($cacheId);
         }
 
-        $this->manager->flush($object);
+        $this->manager->flush();
     }
 
     protected function getResult(QueryBuilder $queryBuilder, $hydration = Query::HYDRATE_OBJECT, $useCache = true, $lifetime = 1)
