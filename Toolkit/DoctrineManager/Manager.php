@@ -227,6 +227,13 @@ abstract class Manager
         return $this->bindData($object, $data);
     }
 
+    /**
+     * @param Paginator $paginator
+     * @param Query $query
+     * @param $page
+     * @param $perPage
+     * @return \Knp\Component\Pager\Pagination\PaginationInterface
+     */
     public function paginate(Paginator $paginator, Query $query, $page, $perPage)
     {
         return $paginator->paginate($query, $page, $perPage);
