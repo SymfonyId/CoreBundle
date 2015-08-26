@@ -253,6 +253,7 @@ abstract class Manager
         }
 
         $this->manager->flush();
+        $this->manager->clear();
     }
 
     protected function getResult(QueryBuilder $queryBuilder, $hydration = Query::HYDRATE_OBJECT, $useCache = true, $lifetime = 1)
