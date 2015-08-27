@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfonian\Indonesia\CoreBundle\Toolkit;
+namespace Symfonian\Indonesia\CoreBundle\Toolkit\MicroCache;
 
 use Symfonian\Indonesia\BundlePlugins\Plugin;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
