@@ -2,7 +2,7 @@
 
 namespace Symfonian\Indonesia\CoreBundle;
 
-use Symfonian\Indonesia\AdminBundle\Compiler\ManagerRegister;
+use Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\Compiler\ManagerRegister;
 use Symfonian\Indonesia\BundlePlugins\PluginBundle as Bundle;
 use Symfonian\Indonesia\CoreBundle\Toolkit\MicroCache\MicroCachePlugin;
 use Symfony\Component\Config\FileLocator;
