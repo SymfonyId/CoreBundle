@@ -4,7 +4,7 @@ namespace Symfonian\Indonesia\CoreBundle;
 
 use Symfonian\Indonesia\AdminBundle\Compiler\ManagerRegister;
 use Symfonian\Indonesia\BundlePlugins\PluginBundle as Bundle;
-use Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\MicroCachePlugin;
+use Symfonian\Indonesia\CoreBundle\Toolkit\MicroCachePlugin;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
