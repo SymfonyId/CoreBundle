@@ -15,6 +15,11 @@ class MicroCachePlugin extends Plugin
         $loader->load('services.yml');
     }
 
+    public function isRequireConfigurationKey()
+    {
+        return false;
+    }
+
     public function name()
     {
         return 'micro_cache';
