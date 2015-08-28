@@ -239,6 +239,15 @@ abstract class Manager
         return $paginator->paginate($query, $page, $perPage);
     }
 
+    /**
+     * @param $alias
+     * @return QueryBuilder
+     */
+    public function createQueryBuilder($alias)
+    {
+        return $this->repository->createQueryBuilder($alias);
+    }
+
     protected function commit($object)
     {
         if (!$this->isSupportedObject($object)) {
