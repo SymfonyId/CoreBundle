@@ -248,6 +248,21 @@ abstract class Manager
         return $this->repository->createQueryBuilder($alias);
     }
 
+    /**
+     * @param QueryBuilder $queryBuilder
+     * @param boolean $useCache
+     * @param integer $lifetime
+     * @return Query
+     */
+    public function getQuery(QueryBuilder $queryBuilder, $useCache, $lifetime)
+    {
+        $query = $queryBuilder->getQuery();
+        $query->useResultCache($useCache, $lifetime, sprintf('%s_%s', $this->class, serialize($query->getParameters())));
+        $query->useQueryCache($useCache);
+
+        return $query;
+    }
+
     protected function commit($object)
     {
         if (!$this->isSupportedObject($object)) {
@@ -267,9 +282,7 @@ abstract class Manager
 
     protected function getResult(QueryBuilder $queryBuilder, $hydration = Query::HYDRATE_OBJECT, $useCache = true, $lifetime = 1)
     {
-        $query = $queryBuilder->getQuery();
-        $query->useResultCache($useCache, $lifetime, sprintf('%s_%s', $this->class, serialize($query->getParameters())));
-        $query->useQueryCache($useCache);
+        $query = $this->getQuery($queryBuilder, $useCache, $lifetime);
         $result = $query->getResult($hydration);
 
         return $result;
@@ -277,9 +290,7 @@ abstract class Manager
 
     protected function getOneOrNullResult(QueryBuilder $queryBuilder, $hydration = Query::HYDRATE_OBJECT, $useCache = true, $lifetime = 1)
     {
-        $query = $queryBuilder->getQuery();
-        $query->useResultCache($useCache, $lifetime, sprintf('%s_%s', $this->class, serialize($query->getParameters())));
-        $query->useQueryCache($useCache);
+        $query = $this->getQuery($queryBuilder, $useCache, $lifetime);
         $result = $query->getOneOrNullResult($hydration);
 
         return $result;
