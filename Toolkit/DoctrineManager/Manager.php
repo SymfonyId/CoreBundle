@@ -3,7 +3,7 @@
 namespace Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager;
 
 use Doctrine\Common\Cache\ArrayCache;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Knp\Component\Pager\Paginator;
@@ -19,7 +19,7 @@ abstract class Manager
     protected $class;
 
     /**
-     * @var ObjectManager
+     * @var EntityManager
      */
     protected $manager;
 
@@ -63,10 +63,10 @@ abstract class Manager
      * @param ManagerFactory $factory
      * @param Request $request
      * @param TokenStorageInterface $tokenStorage
-     * @param ObjectManager $objectManager
+     * @param EntityManager $objectManager
      * @param string $class
      */
-    public function __construct(ManagerFactory $factory, Request $request, TokenStorageInterface $tokenStorage, ObjectManager $objectManager, $class)
+    public function __construct(ManagerFactory $factory, Request $request, TokenStorageInterface $tokenStorage, EntityManager $objectManager, $class)
     {
         $this->manager = $objectManager;
         $this->repository = $objectManager->getRepository($class);
