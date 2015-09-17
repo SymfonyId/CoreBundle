@@ -3,7 +3,6 @@
 namespace Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager;
 
 use Doctrine\Common\Cache\ArrayCache;
-use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Knp\Component\Pager\Paginator;
@@ -11,6 +10,7 @@ use Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\Model\EntityInterface
 use Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\Model\SoftDeletableInterface;
 use Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\Model\TimestampableInterface;
 use Symfonian\Indonesia\CoreBundle\Toolkit\Util\ArrayUtil\ArrayNormalizer;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 abstract class Manager
