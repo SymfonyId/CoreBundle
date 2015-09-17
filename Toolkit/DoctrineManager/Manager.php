@@ -11,7 +11,6 @@ use Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\Model\EntityInterface
 use Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\Model\SoftDeletableInterface;
 use Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\Model\TimestampableInterface;
 use Symfonian\Indonesia\CoreBundle\Toolkit\Util\ArrayUtil\ArrayNormalizer;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 abstract class Manager
@@ -32,11 +31,6 @@ abstract class Manager
      * @var \Doctrine\ORM\EntityRepository
      */
     protected $repository;
-
-    /**
-     * @var Request
-     */
-    protected $request;
 
     /**
      * @var \Doctrine\Common\Cache\Cache
@@ -66,19 +60,17 @@ abstract class Manager
 
     /**
      * @param ManagerFactory $factory
-     * @param Request $request
      * @param TokenStorageInterface $tokenStorage
      * @param ManagerRegistry $registryManager
      * @param string $class
      */
-    public function __construct(ManagerFactory $factory, Request $request, TokenStorageInterface $tokenStorage, ManagerRegistry $registryManager, $class)
+    public function __construct(ManagerFactory $factory, TokenStorageInterface $tokenStorage, ManagerRegistry $registryManager, $class)
     {
         $this->registryManager = $registryManager;
         $objectManager = $registryManager->getManager();
         $this->manager = $objectManager;
         $this->repository = $objectManager->getRepository($class);
         $this->class = $objectManager->getClassMetadata($class)->getName();
-        $this->request = $request;
         $this->identifier = 'id';
 
         $cache = $objectManager->getConfiguration()->getHydrationCacheImpl();
