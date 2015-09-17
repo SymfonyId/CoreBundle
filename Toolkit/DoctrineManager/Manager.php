@@ -3,7 +3,7 @@
 namespace Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager;
 
 use Doctrine\Common\Cache\ArrayCache;
-use Doctrine\ORM\EntityManager;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Knp\Component\Pager\Paginator;
@@ -19,9 +19,14 @@ abstract class Manager
     protected $class;
 
     /**
-     * @var EntityManager
+     * @var \Doctrine\ORM\EntityManager
      */
     protected $manager;
+
+    /**
+     * @var ManagerRegistry
+     */
+    protected $registryManager;
 
     /**
      * @var \Doctrine\ORM\EntityRepository
@@ -63,11 +68,13 @@ abstract class Manager
      * @param ManagerFactory $factory
      * @param Request $request
      * @param TokenStorageInterface $tokenStorage
-     * @param EntityManager $objectManager
+     * @param ManagerRegistry $registryManager
      * @param string $class
      */
-    public function __construct(ManagerFactory $factory, Request $request, TokenStorageInterface $tokenStorage, EntityManager $objectManager, $class)
+    public function __construct(ManagerFactory $factory, Request $request, TokenStorageInterface $tokenStorage, ManagerRegistry $registryManager, $class)
     {
+        $this->registryManager = $registryManager;
+        $objectManager = $registryManager->getManager();
         $this->manager = $objectManager;
         $this->repository = $objectManager->getRepository($class);
         $this->class = $objectManager->getClassMetadata($class)->getName();
@@ -76,6 +83,11 @@ abstract class Manager
 
         $cache = $objectManager->getConfiguration()->getHydrationCacheImpl();
         $this->cache = $cache ?: new ArrayCache();
+    }
+
+    public function resetConnection()
+    {
+        $this->registryManager->resetManager();
     }
 
     /**
