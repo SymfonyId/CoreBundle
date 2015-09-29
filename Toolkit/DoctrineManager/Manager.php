@@ -106,8 +106,14 @@ abstract class Manager
     {
         $this->bindData($object, $data);
 
+        /**
+         * @var $object EntityInterface
+         */
         if ($object instanceof TimestampableInterface) {
             if (!$object->getId()) {
+                /**
+                 * @var $object TimestampableInterface
+                 */
                 $object->setCreatedAt(new \DateTime());
                 $object->setCreatedBy($this->getUser());
             }
@@ -130,6 +136,9 @@ abstract class Manager
             $object->setDeletedAt(new \DateTime());
             $object->setDeletedBy($this->getUser());
 
+            /**
+             * @var $object EntityInterface
+             */
             $this->save($object);
         } else {
             $this->manager->remove($object);
