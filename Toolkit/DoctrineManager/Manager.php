@@ -309,6 +309,14 @@ abstract class Manager
         return $result;
     }
 
+    protected function getSingleScalarResult(QueryBuilder $queryBuilder, $useCache = true, $lifetime = 1)
+    {
+        $query = $this->getQuery($queryBuilder, $useCache, $lifetime);
+        $result = $query->getSingleScalarResult();
+
+        return $result;
+    }
+
     protected function generateCacheKey($value)
     {
         return md5($value);
