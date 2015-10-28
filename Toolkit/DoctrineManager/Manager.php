@@ -106,14 +106,10 @@ abstract class Manager
     {
         $this->bindData($object, $data);
 
-        /**
-         * @var $object EntityInterface
-         */
+        /** @var $object EntityInterface */
         if ($object instanceof TimestampableInterface) {
             if (!$object->getId()) {
-                /**
-                 * @var $object TimestampableInterface
-                 */
+                /** @var $object TimestampableInterface */
                 $object->setCreatedAt(new \DateTime());
                 $object->setCreatedBy($this->getUser());
             }
@@ -136,9 +132,7 @@ abstract class Manager
             $object->setDeletedAt(new \DateTime());
             $object->setDeletedBy($this->getUser());
 
-            /**
-             * @var $object EntityInterface
-             */
+            /** @var $object EntityInterface */
             $this->save($object);
         } else {
             $this->manager->remove($object);
@@ -276,7 +270,10 @@ abstract class Manager
         return $query;
     }
 
-    protected function commit($object)
+    /**
+     * @param EntityInterface $object
+     */
+    protected function commit(EntityInterface $object)
     {
         if (!$this->isSupportedObject($object)) {
             throw new \InvalidArgumentException(sprintf('The class must be instance of %s', $this->class));
