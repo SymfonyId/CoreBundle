@@ -21,7 +21,7 @@
         "doctrine/orm": "~2.2,>=2.2.3,<2.5",
         "doctrine/dbal": "<2.5",
         "knplabs/knp-paginator-bundle": "~2.4",
-        "symfonyid/symfony-bundle-plugins": "dev-master"
+        "symfonyid/symfony-bundle-plugins": "~2.0"
     },
     "autoload": {
         "psr-4": {
