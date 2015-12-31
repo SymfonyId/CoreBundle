@@ -2,7 +2,7 @@ services:
     symfonyid.core.manager_factory:
         class: Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\ManagerFactory
 
-    symfonian_id.admin.generic_form:
+    symfonian_id.core.generic_form:
         class: Symfonian\Indonesia\CoreBundle\Toolkit\Form\GenericFormType
         arguments:
             - '@service_container'
