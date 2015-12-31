@@ -27,6 +27,5 @@
         "psr-4": {
             "Symfonian\\Indonesia\\CoreBundle\\": ""
         }
-    },
-    "preferred-install": "dist"
+    }
 }
