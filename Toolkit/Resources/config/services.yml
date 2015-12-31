@@ -1,5 +1,5 @@
 services:
-    symfonyid.core.manager_factory:
+    symfonian_id.core.manager_factory:
         class: Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\ManagerFactory
 
     symfonian_id.core.generic_form:

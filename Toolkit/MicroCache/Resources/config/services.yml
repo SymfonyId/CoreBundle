@@ -1,5 +1,5 @@
 services:
-    symfonian.indonesia.core.micro_cache_listener:
+    symfonian_id.core.micro_cache_listener:
         class: Symfonian\Indonesia\CoreBundle\Toolkit\MicroCache\MicroCacheListener
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
