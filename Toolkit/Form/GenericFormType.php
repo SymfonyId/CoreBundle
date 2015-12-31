@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class GenericFromType extends AbstractType
+class GenericFormType extends AbstractType
 {
     /**
      * @var ContainerInterface
