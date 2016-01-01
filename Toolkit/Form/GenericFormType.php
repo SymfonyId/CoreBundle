@@ -46,7 +46,7 @@ class GenericFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $cssStyle = !isset($options['attr']['style'])? $options['attr']['style']: 'form-control';
+        $cssStyle = isset($options['attr']['style'])? $options['attr']['style']: 'form-control';
         foreach ($options['fields'] as $key => $value) {
             if ('id' === $value) {
                 continue;
