@@ -30,6 +30,9 @@ class Limit extends AbstractFilter
 
     public function getQueryBuilder()
     {
-        // TODO: Implement getQueryBuilder() method.
+        $this->queryBuilder->setFirstResult($this->startRecord);
+        $this->queryBuilder->setMaxResults($this->limit);
+
+        return $this->queryBuilder;
     }
 }

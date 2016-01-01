@@ -6,7 +6,7 @@ class ManagerFactory
 {
     protected $managers = array();
 
-    public function addManager(Manager $manager)
+    public function addManager(AbstractManager $manager)
     {
         $this->managers[$manager->getName()] = $manager;
     }

@@ -28,6 +28,8 @@ class OrderBy extends AbstractFilter
 
     public function getQueryBuilder()
     {
-        // TODO: Implement getQueryBuilder() method.
+        $this->queryBuilder->addOrderBy($this->getField(), $this->direction);
+
+        return $this->queryBuilder;
     }
 }
