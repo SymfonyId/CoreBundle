@@ -2,14 +2,18 @@
 
 namespace Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager;
 
-class Limit
+class Limit extends AbstractFilter
 {
     private $startRecord;
 
     private $limit;
 
-    public function __construct($startRecord = 0, $limit = 1)
+    const DEFAULT_LIMIT = 10;
+
+    public function __construct($field = null, $alias = null, $startRecord = 0, $limit = self::DEFAULT_LIMIT)
     {
+        $this->setAlias($alias);
+        $this->setField($field);
         $this->setStartRecord($startRecord);
         $this->setLimit($limit);
     }
@@ -24,13 +28,8 @@ class Limit
         $this->limit = (int) $limit;
     }
 
-    public function getStartRecord()
+    public function getQueryBuilder()
     {
-        return $this->startRecord;
-    }
-
-    public function getLimit()
-    {
-        return $this->limit;
+        // TODO: Implement getQueryBuilder() method.
     }
 }

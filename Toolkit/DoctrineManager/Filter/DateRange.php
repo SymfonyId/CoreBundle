@@ -2,14 +2,16 @@
 
 namespace Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager;
 
-class DateRange
+class DateRange extends AbstractFilter
 {
     private $startDate;
 
     private $endDate;
 
-    public function __construct(\DateTime $startDate = null, \DateTime $endDate = null)
+    public function __construct($field = null, $alias = null, \DateTime $startDate = null, \DateTime $endDate = null)
     {
+        $this->setAlias($alias);
+        $this->setField($field);
         $this->setEndDate($startDate);
         $this->setEndDate($endDate);
     }
@@ -24,19 +26,11 @@ class DateRange
         $this->endDate = $dateTime;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getStartDate()
+    public function getQueryBuilder()
     {
-        return $this->startDate;
-    }
+        $this->queryBuilder->andWhere(sprintf('%s >= %s', $this->getField(), $this->startDate));
+        $this->queryBuilder->andWhere(sprintf('%s <= %s', $this->getField(), $this->endDate));
 
-    /**
-     * @return \DateTime
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
+        return $this->queryBuilder;
     }
 }

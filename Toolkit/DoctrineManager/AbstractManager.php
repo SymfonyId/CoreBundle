@@ -13,7 +13,7 @@ use Symfonian\Indonesia\CoreBundle\Toolkit\Util\ArrayUtil\ArrayNormalizer;
 use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-abstract class Manager
+abstract class AbstractManager
 {
     protected $class;
 
@@ -59,10 +59,10 @@ abstract class Manager
     abstract public function getName();
 
     /**
-     * @param ManagerFactory $factory
+     * @param ManagerFactory        $factory
      * @param TokenStorageInterface $tokenStorage
-     * @param ManagerRegistry $registryManager
-     * @param string $class
+     * @param ManagerRegistry       $registryManager
+     * @param string                $class
      */
     public function __construct(ManagerFactory $factory, TokenStorageInterface $tokenStorage, ManagerRegistry $registryManager, $class)
     {
@@ -100,7 +100,7 @@ abstract class Manager
 
     /**
      * @param EntityInterface $object
-     * @param array $data
+     * @param array           $data
      */
     public function save(EntityInterface $object, array $data = array())
     {
@@ -109,7 +109,7 @@ abstract class Manager
         /** @var $object EntityInterface */
         if ($object instanceof TimestampableInterface) {
             if (!$object->getId()) {
-                /** @var $object TimestampableInterface */
+                /* @var $object TimestampableInterface */
                 $object->setCreatedAt(new \DateTime());
                 $object->setCreatedBy($this->getUser());
             }
@@ -132,7 +132,7 @@ abstract class Manager
             $object->setDeletedAt(new \DateTime());
             $object->setDeletedBy($this->getUser());
 
-            /** @var $object EntityInterface */
+            /* @var $object EntityInterface */
             $this->save($object);
         } else {
             $this->manager->remove($object);
@@ -144,6 +144,7 @@ abstract class Manager
 
     /**
      * @param $id
+     *
      * @return mixed object of $class
      */
     public function find($id)
@@ -161,6 +162,7 @@ abstract class Manager
 
     /**
      * @param $id
+     *
      * @return array
      */
     public function findArray($id)
@@ -180,10 +182,11 @@ abstract class Manager
     }
 
     /**
-     * @param array $criteria
+     * @param array      $criteria
      * @param bool|false $softDelete
      * @param bool|false $isDelete
-     * @param string $fieldId
+     * @param string     $fieldId
+     *
      * @return array
      */
     public function findByArray(array $criteria, $softDelete = false, $isDelete = false, $fieldId = 'isDelete')
@@ -202,10 +205,11 @@ abstract class Manager
     }
 
     /**
-     * @param array $criteria
+     * @param array      $criteria
      * @param bool|false $softDelete
      * @param bool|false $isDelete
-     * @param string $fieldId
+     * @param string     $fieldId
+     *
      * @return mixed object of $class
      */
     public function findBy(array $criteria, $softDelete = false, $isDelete = false, $fieldId = 'isDelete')
@@ -225,6 +229,7 @@ abstract class Manager
 
     /**
      * @param array $data
+     *
      * @return mixed object of $class
      */
     public function unserialize(array $data)
@@ -236,9 +241,10 @@ abstract class Manager
 
     /**
      * @param Paginator $paginator
-     * @param Query $query
+     * @param Query     $query
      * @param $page
      * @param $perPage
+     *
      * @return \Knp\Component\Pager\Pagination\PaginationInterface
      */
     public function paginate(Paginator $paginator, Query $query, $page, $perPage)
@@ -248,6 +254,7 @@ abstract class Manager
 
     /**
      * @param $alias
+     *
      * @return QueryBuilder
      */
     public function createQueryBuilder($alias)
@@ -257,8 +264,9 @@ abstract class Manager
 
     /**
      * @param QueryBuilder $queryBuilder
-     * @param boolean $useCache
-     * @param integer $lifetime
+     * @param bool         $useCache
+     * @param int          $lifetime
+     *
      * @return Query
      */
     public function getQuery(QueryBuilder $queryBuilder, $useCache, $lifetime)
@@ -329,7 +337,7 @@ abstract class Manager
         $object = $this->cache->fetch($this->generateCacheKey($id));
 
         if (!$object) {
-            return null;
+            return;
         }
 
         if (is_object($object)) {
