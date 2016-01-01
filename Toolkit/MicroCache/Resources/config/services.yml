@@ -2,7 +2,7 @@ services:
     symfonian_id.core.micro_cache_listener:
         class: Symfonian\Indonesia\CoreBundle\Toolkit\MicroCache\MicroCacheListener
         arguments:
-            - @service_container
+            - '@service_container'
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
