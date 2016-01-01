@@ -28,8 +28,10 @@ class DateRange extends AbstractFilter
 
     public function getQueryBuilder()
     {
-        $this->queryBuilder->andWhere(sprintf('%s >= %s', $this->getField(), $this->startDate));
-        $this->queryBuilder->andWhere(sprintf('%s <= %s', $this->getField(), $this->endDate));
+        $this->queryBuilder->andWhere(sprintf('%s >= :startDate', $this->getField()));
+        $this->queryBuilder->andWhere(sprintf('%s <= :endDate', $this->getField()));
+        $this->queryBuilder->setParameter('startDate', $this->startDate);
+        $this->queryBuilder->setParameter('endDate', $this->endDate);
 
         return $this->queryBuilder;
     }
