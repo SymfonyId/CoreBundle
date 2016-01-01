@@ -28,11 +28,6 @@ class MicroCachePlugin extends Plugin
         ;
     }
 
-    public function isRequireConfigurationKey()
-    {
-        return false;
-    }
-
     public function name()
     {
         return 'micro_cache';
