@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Toolkit\Util\StringUtil;
+namespace Tests\Toolkit\Util\MimeUtil;
 
 use Symfonian\Indonesia\CoreBundle\Toolkit\Util\MimeUtil\MimeGuesser;
 

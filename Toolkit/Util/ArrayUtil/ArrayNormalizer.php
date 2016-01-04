@@ -35,9 +35,4 @@ final class ArrayNormalizer
 
         return $object;
     }
-
-    public static function convertToArray($object)
-    {
-
-    }
 }
