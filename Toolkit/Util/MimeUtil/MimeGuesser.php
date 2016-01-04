@@ -4,8 +4,9 @@ namespace Symfonian\Indonesia\CoreBundle\Toolkit\Util\MimeUtil;
 
 final class MimeGuesser
 {
-    private $mimeMapping = array(
+    private static $mimeMapping = array(
         'image/png' => 'png',
+        'image/jpg' => 'jpg',
         'image/jpeg' => 'jpg',
         'image/gif' => 'gif',
         'video/mp4'  => 'mp4',
@@ -16,10 +17,10 @@ final class MimeGuesser
      * @param $mime
      * @return string
      */
-    public function getExtension($mime)
+    public static function getExtension($mime)
     {
-        if (in_array($mime, $this->mimeMapping)) {
-            return $this->mimeMapping($mime);
+        if (in_array($mime, array_keys(self::$mimeMapping))) {
+            return self::$mimeMapping[$mime];
         }
     }
 
@@ -27,18 +28,18 @@ final class MimeGuesser
      * @param $filePath
      * @return array
      */
-    public function getMimeType($filePath)
+    public static function getMimeType($filePath)
     {
         $mime = finfo_buffer(finfo_open(), $filePath, FILEINFO_MIME_TYPE);
 
-        return $this->normalizeMime($mime);
+        return self::normalizeMime($mime);
     }
 
     /**
      * @param $mime
      * @return array
      */
-    public function normalizeMime($mime)
+    public static function normalizeMime($mime)
     {
         $exploded = explode('/', $mime);
 

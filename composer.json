@@ -23,9 +23,17 @@
         "knplabs/knp-paginator-bundle": "~2.4",
         "symfonyid/symfony-bundle-plugins": "dev-master"
     },
+    "require-dev": {
+        "phpunit/phpunit": "5.1.*"
+    },
     "autoload": {
         "psr-4": {
             "Symfonian\\Indonesia\\CoreBundle\\": ""
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
     }
 }
