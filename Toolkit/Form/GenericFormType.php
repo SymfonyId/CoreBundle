@@ -70,14 +70,8 @@ class GenericFormType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => $this->entity,
             'translation_domain' => $this->translationDomain,
-            'intention' => $this->getName(),
         ));
 
         $resolver->setRequired(array('fields'));
-    }
-
-    public function getName()
-    {
-        return 'generic';
     }
 }
