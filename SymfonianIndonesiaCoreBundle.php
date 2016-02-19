@@ -2,7 +2,6 @@
 
 namespace Symfonian\Indonesia\CoreBundle;
 
-use Symfonian\Indonesia\CoreBundle\Toolkit\Command\ApcCacheCleanerCommand;
 use Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\Compiler\ManagerRegister;
 use Symfonian\Indonesia\BundlePlugins\PluginBundle as Bundle;
 use Symfonian\Indonesia\CoreBundle\Toolkit\MicroCache\MicroCachePlugin;
@@ -22,11 +21,6 @@ class SymfonianIndonesiaCoreBundle extends Bundle
     public function addCompilerPass(ContainerBuilder $container)
     {
         $container->addCompilerPass(new ManagerRegister());
-    }
-
-    public function addCommand(Application $application)
-    {
-        $application->add(new ApcCacheCleanerCommand());
     }
 
     public function defaultPlugins()
