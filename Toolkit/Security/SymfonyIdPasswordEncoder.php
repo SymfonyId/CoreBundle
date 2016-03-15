@@ -15,4 +15,9 @@ class SymfonyIdPasswordEncoder implements PasswordEncoderInterface
     {
         return $encoded === $this->encodePassword($raw, $salt);
     }
+
+    public static function generateSalt()
+    {
+        return sha1(microtime());
+    }
 }
