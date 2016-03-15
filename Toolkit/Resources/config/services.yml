@@ -8,3 +8,6 @@ services:
             - '@service_container'
         tags:
             - { name: form.type }
+
+    symfonian_id.core.password_encoder:
+        class: Symfonian\Indonesia\CoreBundle\Toolkit\Security\SymfonyIdPasswordEncoder
