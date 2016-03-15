@@ -2,12 +2,5 @@ services:
     symfonian_id.core.manager_factory:
         class: Symfonian\Indonesia\CoreBundle\Toolkit\DoctrineManager\ManagerFactory
 
-    symfonian_id.core.generic_form:
-        class: Symfonian\Indonesia\CoreBundle\Toolkit\Form\GenericFormType
-        arguments:
-            - '@service_container'
-        tags:
-            - { name: form.type }
-
     symfonian_id.core.password_encoder:
         class: Symfonian\Indonesia\CoreBundle\Toolkit\Security\SymfonyIdPasswordEncoder
