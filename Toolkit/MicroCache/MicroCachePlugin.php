@@ -15,15 +15,20 @@ class MicroCachePlugin extends Plugin
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/Resources/config'));
         $loader->load('services.yml');
 
-        $container->setParameter('symfony_id.core.cache_lifetime', $pluginConfiguration['cache_lifetime']);
+        $container->setParameter('symfony_id.core.cache_lifetime', 5 < $pluginConfiguration['cache_lifetime'] ? 5 : $pluginConfiguration['cache_lifetime']);
+        $container->setParameter('symfony_id.core.use_cache', $pluginConfiguration['use_cache']);
     }
 
     public function addConfiguration(ArrayNodeDefinition $pluginNode)
     {
         $pluginNode
             ->children()
+                ->booleanNode('use_cache')
+                    ->defaultValue(false)
+                ->end()
                 ->integerNode('cache_lifetime')
-                ->defaultValue(5)
+                    ->defaultValue(5)
+                ->end()
             ->end()
         ;
     }
