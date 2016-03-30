@@ -18,7 +18,7 @@ class MicroCacheListener
 
     public function onKernelResponse(FilterResponseEvent $event)
     {
-        if ($event->getRequest()->isMethod('GET') && $this->container->getParameter('symfony_id.core.cache_lifetime')) {
+        if ($event->getRequest()->isMethod('GET') && $this->container->getParameter('symfony_id.core.use_cache')) {
             $response = $event->getResponse();
             $lifetime = $this->container->getParameter('symfony_id.core.cache_lifetime');
 
@@ -32,7 +32,7 @@ class MicroCacheListener
     public function onKernelRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
-        if ($request->isMethod('GET') && $this->container->getParameter('symfony_id.core.cache_lifetime')) {
+        if ($request->isMethod('GET') && $this->container->getParameter('symfony_id.core.use_cache')) {
             $response = new Response();
 
             if ($response->isNotModified($request)) {
