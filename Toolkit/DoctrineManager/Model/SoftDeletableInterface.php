@@ -7,10 +7,10 @@ use DateTime;
 interface SoftDeletableInterface
 {
     /**
-     * @param null $isDelete
+     * @param null $isDeleted
      * @return boolean
      */
-    public function isDelete($isDelete = null);
+    public function isDeleted($isDeleted = null);
 
     /**
      * @param DateTime $date
