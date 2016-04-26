@@ -15,7 +15,7 @@ trait SoftDeletableEntity
      *
      * @var bool
      */
-    protected $isDeleted;
+    protected $isDeleted = false;
 
     /**
      * @ORM\Column(name="deleted_at", type="datetime")
