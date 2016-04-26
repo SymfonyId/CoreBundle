@@ -18,14 +18,14 @@ trait SoftDeletableEntity
     protected $isDeleted = false;
 
     /**
-     * @ORM\Column(name="deleted_at", type="datetime")
+     * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
      *
      * @var DateTime
      */
     protected $deletedAt;
 
     /**
-     * @ORM\Column(name="deleted_by", type="string", length=255)
+     * @ORM\Column(name="deleted_by", type="string", length=255, nullable=true)
      *
      * @var string
      */
