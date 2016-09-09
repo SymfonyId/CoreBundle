@@ -31,6 +31,10 @@ class MicroCacheListener
 
     public function onKernelRequest(GetResponseEvent $event)
     {
+        if (! $event->isMasterRequest()) {
+            return;
+        }
+
         $request = $event->getRequest();
         if ($request->isMethod('GET') && $this->container->getParameter('symfony_id.core.use_cache')) {
             $response = new Response();
