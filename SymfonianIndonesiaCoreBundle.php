@@ -25,7 +25,7 @@ class SymfonianIndonesiaCoreBundle extends Bundle
 
     public function defaultPlugins()
     {
-        return array(new MicroCachePlugin());
+        return array();
     }
 
     public function getAlias()
